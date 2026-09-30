@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-
     <meta name="theme-color"
           content="#25D366">
-
     <meta name="apple-mobile-web-app-capable"
           content="yes">
-
     <meta name="apple-mobile-web-app-status-bar-style"
           content="default">
-
     <title>Wolfgang-Kontakt</title>
-
-
     <style>
-
+        /* =========================================
+           GRUNDEINSTELLUNGEN
+        ========================================= */
         * {
             box-sizing: border-box;
         }
-
         body {
             margin: 0;
             padding: 0;
-
             font-family:
                 -apple-system,
                 BlinkMacSystemFont,
@@ -37,1514 +29,786 @@
                 Helvetica,
                 Arial,
                 sans-serif;
-
             background:
                 linear-gradient(
                     135deg,
                     #dcfce7,
                     #f0fdf4
                 );
-
             color: #1f2937;
+            min-height: 100vh;
         }
-
-
         .container {
             width: 100%;
             max-width: 520px;
-
             margin: 0 auto;
-
-            padding: 14px 12px 40px;
+            padding:
+                14px
+                12px
+                40px;
         }
-
-
         .card {
             background: #ffffff;
-
-            border-radius: 24px;
-
-            padding: 24px 20px;
-
+            border-radius: 25px;
+            padding:
+                24px
+                20px;
             box-shadow:
                 0 8px 30px
                 rgba(0, 0, 0, 0.10);
         }
-
-
         /* =========================================
            HEADER
         ========================================= */
-
         .header {
             text-align: center;
-
-            margin-bottom: 22px;
+            margin-bottom: 23px;
         }
-
-
         .main-emoji {
             font-size: 64px;
-
             line-height: 1;
-
             margin-bottom: 10px;
         }
-
-
         h1 {
             margin: 0;
-
             font-size: 29px;
-
             line-height: 1.15;
-
             color: #111827;
         }
-
-
         .subtitle {
             margin-top: 10px;
-
             font-size: 16px;
-
             line-height: 1.5;
-
             color: #64748b;
         }
-
-
         /* =========================================
            WARNUNG
         ========================================= */
-
         .warning {
             background: #fff7ed;
-
-            border: 2px solid #fed7aa;
-
+            border:
+                2px solid
+                #fed7aa;
             border-radius: 16px;
-
             padding: 14px;
-
             text-align: center;
-
             margin-bottom: 22px;
-
             font-size: 15px;
-
             line-height: 1.45;
-
             color: #9a3412;
         }
-
-
         /* =========================================
-           FRAGEN
+           FRAGE
         ========================================= */
-
         .question {
             font-size: 19px;
-
             font-weight: 700;
-
             margin:
-                23px 0
+                23px
+                0
                 13px;
         }
-
-
         /* =========================================
            MELDUNGSBUTTONS
         ========================================= */
-
         .message-button {
             width: 100%;
-
-            border: 2px solid #e5e7eb;
-
+            border:
+                2px solid
+                #e5e7eb;
             border-radius: 16px;
-
-            padding: 16px 15px;
-
+            padding:
+                16px
+                15px;
             margin-bottom: 11px;
-
             background: #f8fafc;
-
             color: #1f2937;
-
             font-size: 17px;
-
             font-weight: 600;
-
             text-align: left;
-
             cursor: pointer;
-
             transition:
                 transform .1s,
                 background .15s,
                 border-color .15s;
         }
-
-
+        .message-button:hover {
+            background: #f1f5f9;
+        }
         .message-button:active {
             transform: scale(.98);
         }
-
-
         .message-button.selected {
             background: #dcfce7;
-
-            border-color: #22c55e;
-
-            color: #166534;
+            border-color:
+                #22c55e;
+            color:
+                #166534;
         }
-
-
         /* =========================================
            EIGENE NACHRICHT
         ========================================= */
-
         textarea {
             width: 100%;
-
             min-height: 115px;
-
             padding: 14px;
-
             border:
                 2px solid
                 #e5e7eb;
-
             border-radius: 15px;
-
             font-family: inherit;
-
             font-size: 16px;
-
             line-height: 1.45;
-
             resize: vertical;
-
             outline: none;
         }
-
-
         textarea:focus {
-            border-color: #25D366;
+            border-color:
+                #25D366;
         }
-
-
-        /* =========================================
-           FOTO
-        ========================================= */
-
-        .photo-box {
-            background: #f8fafc;
-
-            border:
-                2px dashed
-                #cbd5e1;
-
-            border-radius: 17px;
-
-            padding: 18px 14px;
-
-            text-align: center;
-        }
-
-
-        .photo-icon {
-            font-size: 43px;
-
-            margin-bottom: 7px;
-        }
-
-
-        .photo-title {
-            font-size: 17px;
-
-            font-weight: 700;
-
-            margin-bottom: 5px;
-        }
-
-
-        .photo-text {
-            color: #64748b;
-
-            font-size: 13px;
-
-            line-height: 1.45;
-
-            margin-bottom: 14px;
-        }
-
-
-        .photo-button {
-            display: inline-block;
-
-            background: #25D366;
-
-            color: white;
-
-            border-radius: 14px;
-
-            padding: 13px 18px;
-
-            font-size: 16px;
-
-            font-weight: 700;
-
-            cursor: pointer;
-        }
-
-
-        .photo-button:active {
-            transform: scale(.98);
-        }
-
-
-        #photo {
-            display: none;
-        }
-
-
-        .photo-preview {
-            display: none;
-
-            width: 100%;
-
-            max-height: 280px;
-
-            object-fit: contain;
-
-            margin-top: 15px;
-
-            border-radius: 14px;
-
-            border: 1px solid #e2e8f0;
-        }
-
-
-        .photo-name {
-            margin-top: 10px;
-
-            color: #15803d;
-
-            font-size: 13px;
-
-            word-break: break-word;
-        }
-
-
-        .remove-photo {
-            display: none;
-
-            margin:
-                10px auto
-                0;
-
-            border: none;
-
-            background: transparent;
-
-            color: #b91c1c;
-
-            font-size: 14px;
-
-            cursor: pointer;
-        }
-
-
         /* =========================================
            STANDORT
         ========================================= */
-
         .location-box {
             background: #f8fafc;
-
             border:
                 1px solid
                 #e2e8f0;
-
             border-radius: 17px;
-
             padding: 16px;
         }
-
-
         .location-title {
             font-size: 17px;
-
             font-weight: 700;
-
             margin-bottom: 7px;
         }
-
-
         .location-text {
             color: #64748b;
-
             font-size: 13px;
-
             line-height: 1.5;
         }
-
-
         .location-status {
             margin-top: 11px;
-
             font-size: 14px;
-
             font-weight: 700;
         }
-
-
         .location-success {
-            color: #15803d;
+            color:
+                #15803d;
         }
-
-
         .location-error {
-            color: #b91c1c;
+            color:
+                #b91c1c;
         }
-
-
+        /* =========================================
+           WHATSAPP HINWEIS
+        ========================================= */
+        .whatsapp-info {
+            background:
+                #ecfdf5;
+            border:
+                1px solid
+                #bbf7d0;
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            color:
+                #166534;
+        }
         /* =========================================
            WHATSAPP BUTTON
         ========================================= */
-
         .whatsapp-button {
             width: 100%;
-
-            margin-top: 24px;
-
-            padding: 18px;
-
+            margin-top: 20px;
+            padding: 19px;
             border: none;
-
             border-radius: 17px;
-
-            background: #25D366;
-
+            background:
+                #25D366;
             color: white;
-
-            font-size: 19px;
-
+            font-size: 20px;
             font-weight: 800;
-
             cursor: pointer;
-
             box-shadow:
                 0 5px 14px
                 rgba(37, 211, 102, .30);
         }
-
-
+        .whatsapp-button:hover {
+            background:
+                #20bd5a;
+        }
         .whatsapp-button:active {
-            transform: scale(.98);
+            transform:
+                scale(.98);
         }
-
-
         .whatsapp-button:disabled {
-            background: #86efac;
-
-            cursor: not-allowed;
+            background:
+                #86efac;
+            cursor:
+                not-allowed;
         }
-
-
         /* =========================================
-           STATUS
+           FEHLER
         ========================================= */
-
-        .status {
+        .error {
             display: none;
-
             margin-top: 15px;
-
             padding: 13px;
-
             border-radius: 14px;
-
-            text-align: center;
-
+            background:
+                #fef2f2;
+            color:
+                #b91c1c;
             font-size: 14px;
-
             line-height: 1.45;
+            text-align: center;
         }
-
-
-        .status.error {
-            display: none;
-
-            background: #fef2f2;
-
-            color: #b91c1c;
-        }
-
-
         /* =========================================
-           HINWEIS
+           ABSCHLUSS
         ========================================= */
-
         .privacy {
             margin-top: 18px;
-
             text-align: center;
-
-            color: #94a3b8;
-
+            color:
+                #94a3b8;
             font-size: 12px;
-
             line-height: 1.5;
         }
-
-
         .footer {
             text-align: center;
-
-            color: #94a3b8;
-
+            color:
+                #94a3b8;
             font-size: 12px;
-
             margin-top: 16px;
         }
-
-
         /* =========================================
            KLEINE HANDYS
         ========================================= */
-
         @media (max-width: 380px) {
-
             .container {
                 padding:
                     10px
                     8px
                     30px;
             }
-
             .card {
                 padding:
                     20px
                     16px;
             }
-
             h1 {
-                font-size: 26px;
+                font-size:
+                    26px;
             }
-
             .message-button {
-                font-size: 16px;
+                font-size:
+                    16px;
             }
         }
-
     </style>
-
 </head>
-
-
 <body>
-
-
 <div class="container">
-
-
     <div class="card">
-
-
         <!-- =========================================
-             KONTAKTBEREICH
+             HEADER
         ========================================== -->
-
-        <div id="contactArea">
-
-
-            <div class="header">
-
-                <div class="main-emoji">
-                    📱🍺
-                </div>
-
-
-                <h1>
-                    Wolfgang-Kontakt
-                </h1>
-
-
-                <div class="subtitle">
-
-                    Du hast Wolfgang entdeckt?
-
-                    <br>
-
-                    Dann kannst du seiner Frau
-                    direkt über WhatsApp Bescheid geben. 😄
-
-                </div>
-
+        <div class="header">
+            <div class="main-emoji">
+                📱🍺
             </div>
-
-
-            <!-- =====================================
-                 WARNUNG
-            ====================================== -->
-
-            <div class="warning">
-
-                ⚠️ <strong>Wichtige Information</strong>
-
+            <h1>
+                Wolfgang-Kontakt
+            </h1>
+            <div class="subtitle">
+                Du hast Wolfgang entdeckt?
                 <br>
-
-                Falls Wolfgang gerade etwas
-                merkwürdig wirkt – bitte melden! 😂
-
+                Dann kannst du seiner Frau
+                direkt über WhatsApp Bescheid geben. 😄
             </div>
-
-
-            <!-- =====================================
-                 MELDUNG
-            ====================================== -->
-
-            <div class="question">
-
-                Was ist los? 😄
-
-            </div>
-
-
-            <button
-                type="button"
-                class="message-button"
-                data-message="🍺 Ich glaube, Wolfgang ist betrunken."
-            >
-
-                🍺 &nbsp; Wolfgang ist betrunken
-
-            </button>
-
-
-            <button
-                type="button"
-                class="message-button"
-                data-message="😴 Wolfgang ist eingeschlafen."
-            >
-
-                😴 &nbsp; Wolfgang ist eingeschlafen
-
-            </button>
-
-
-            <button
-                type="button"
-                class="message-button"
-                data-message="🕺 Wolfgang tanzt gerade."
-            >
-
-                🕺 &nbsp; Wolfgang tanzt
-
-            </button>
-
-
-            <button
-                type="button"
-                class="message-button"
-                data-message="😂 Wolfgang macht gerade Unsinn."
-            >
-
-                😂 &nbsp; Wolfgang macht Unsinn
-
-            </button>
-
-
-            <button
-                type="button"
-                class="message-button"
-                data-message="🚨 Wolfgang braucht vermutlich eine Abholung."
-            >
-
-                🚨 &nbsp; Wolfgang braucht Abholung
-
-            </button>
-
-
-            <button
-                type="button"
-                class="message-button"
-                data-message="👍 Wolfgang ist wohlauf."
-            >
-
-                👍 &nbsp; Wolfgang ist wohlauf
-
-            </button>
-
-
-            <!-- =====================================
-                 EIGENE NACHRICHT
-            ====================================== -->
-
-            <div class="question">
-
-                Noch etwas dazu?
-
-            </div>
-
-
-            <textarea
-                id="customMessage"
-                placeholder="Hier kannst du noch etwas schreiben ..."
-            ></textarea>
-
-
-            <!-- =====================================
-                 FOTO
-            ====================================== -->
-
-            <div class="question">
-
-                📸 Foto
-
-            </div>
-
-
-            <div class="photo-box">
-
-
-                <div class="photo-icon">
-                    📷
-                </div>
-
-
-                <div class="photo-title">
-
-                    Beweisfoto machen?
-
-                </div>
-
-
-                <div class="photo-text">
-
-                    Du kannst direkt ein Foto aufnehmen
-                    oder ein vorhandenes Bild auswählen.
-
-                    <br><br>
-
-                    Das Foto wird anschließend in WhatsApp
-                    noch einmal ausgewählt bzw. angehängt.
-
-                </div>
-
-
-                <label
-                    for="photo"
-                    class="photo-button"
-                >
-
-                    📸 Foto aufnehmen
-
-                </label>
-
-
-                <input
-                    type="file"
-                    id="photo"
-                    accept="image/*"
-                    capture="environment"
-                >
-
-
-                <img
-                    id="photoPreview"
-                    class="photo-preview"
-                    alt="Foto-Vorschau"
-                >
-
-
-                <div
-                    id="photoName"
-                    class="photo-name"
-                ></div>
-
-
-                <button
-                    type="button"
-                    id="removePhoto"
-                    class="remove-photo"
-                >
-
-                    ❌ Foto entfernen
-
-                </button>
-
-
-            </div>
-
-
-            <!-- =====================================
-                 STANDORT
-            ====================================== -->
-
-            <div class="question">
-
-                📍 Standort
-
-            </div>
-
-
-            <div class="location-box">
-
-
-                <div class="location-title">
-
-                    Standort mitsenden
-
-                </div>
-
-
-                <div class="location-text">
-
-                    Wenn du deinen Standort freigibst,
-                    wird ein Google-Maps-Link in die
-                    WhatsApp-Nachricht eingefügt.
-
-                    <br><br>
-
-                    Die Standortfreigabe ist freiwillig.
-
-                </div>
-
-
-                <div
-                    id="locationStatus"
-                    class="location-status"
-                >
-
-                    📍 Standort wird beim Senden ermittelt.
-
-                </div>
-
-
-            </div>
-
-
-            <!-- =====================================
-                 WHATSAPP SENDEN
-            ====================================== -->
-
-            <button
-                type="button"
-                id="sendButton"
-                class="whatsapp-button"
-            >
-
-                💬 WhatsApp öffnen
-
-            </button>
-
-
-            <div
-                id="errorMessage"
-                class="status error"
-            >
-
-            </div>
-
-
-            <!-- =====================================
-                 HINWEIS
-            ====================================== -->
-
-            <div class="privacy">
-
-                Die Nachricht wird an die hinterlegte
-                WhatsApp-Nummer weitergeleitet.
-
-                <br>
-
-                Die Standortfreigabe ist freiwillig.
-
-            </div>
-
-
         </div>
-
-
+        <!-- =========================================
+             WARNUNG
+        ========================================== -->
+        <div class="warning">
+            ⚠️ <strong>Wichtige Information</strong>
+            <br>
+            Falls Wolfgang gerade etwas
+            merkwürdig wirkt – bitte melden! 😂
+        </div>
+        <!-- =========================================
+             MELDUNG
+        ========================================== -->
+        <div class="question">
+            Was ist los? 😄
+        </div>
+        <button
+            type="button"
+            class="message-button"
+            data-message="🍺 Ich glaube, Wolfgang ist betrunken."
+        >
+            🍺 &nbsp; Wolfgang ist betrunken
+        </button>
+        <button
+            type="button"
+            class="message-button"
+            data-message="😴 Wolfgang ist eingeschlafen."
+        >
+            😴 &nbsp; Wolfgang ist eingeschlafen
+        </button>
+        <button
+            type="button"
+            class="message-button"
+            data-message="🕺 Wolfgang tanzt gerade."
+        >
+            🕺 &nbsp; Wolfgang tanzt
+        </button>
+        <button
+            type="button"
+            class="message-button"
+            data-message="😂 Wolfgang macht gerade Unsinn."
+        >
+            😂 &nbsp; Wolfgang macht Unsinn
+        </button>
+        <button
+            type="button"
+            class="message-button"
+            data-message="🚨 Wolfgang braucht vermutlich eine Abholung."
+        >
+            🚨 &nbsp; Wolfgang braucht Abholung
+        </button>
+        <button
+            type="button"
+            class="message-button"
+            data-message="👍 Wolfgang ist wohlauf."
+        >
+            👍 &nbsp; Wolfgang ist wohlauf
+        </button>
+        <!-- =========================================
+             EIGENE NACHRICHT
+        ========================================== -->
+        <div class="question">
+            Noch etwas dazu?
+        </div>
+        <textarea
+            id="customMessage"
+            placeholder="Hier kannst du noch etwas schreiben ..."
+        ></textarea>
+        <!-- =========================================
+             STANDORT
+        ========================================== -->
+        <div class="question">
+            📍 Standort
+        </div>
+        <div class="location-box">
+            <div class="location-title">
+                Standort mitsenden
+            </div>
+            <div class="location-text">
+                Wenn du deinen Standort freigibst,
+                wird automatisch ein Google-Maps-Link
+                in die WhatsApp-Nachricht eingefügt.
+                <br><br>
+                Die Standortfreigabe ist freiwillig.
+            </div>
+            <div
+                id="locationStatus"
+                class="location-status"
+            >
+                📍 Standort wird beim Senden ermittelt.
+            </div>
+        </div>
+        <!-- =========================================
+             WHATSAPP HINWEIS
+        ========================================== -->
+        <div class="whatsapp-info">
+            📷 <strong>Foto?</strong>
+            <br>
+            Kein Problem! Wenn du möchtest,
+            kannst du anschließend direkt in WhatsApp
+            über <strong>+</strong> die Kamera öffnen
+            und ein Foto aufnehmen.
+        </div>
+        <!-- =========================================
+             WHATSAPP BUTTON
+        ========================================== -->
+        <button
+            type="button"
+            id="sendButton"
+            class="whatsapp-button"
+        >
+            💬 WhatsApp öffnen
+        </button>
+        <!-- =========================================
+             FEHLER
+        ========================================== -->
+        <div
+            id="errorMessage"
+            class="error"
+        ></div>
+        <!-- =========================================
+             HINWEIS
+        ========================================== -->
+        <div class="privacy">
+            Die Nachricht wird an die hinterlegte
+            WhatsApp-Nummer vorbereitet.
+            <br>
+            Die Standortfreigabe ist freiwillig.
+        </div>
     </div>
-
-
     <div class="footer">
-
         Wolfgang-Kontakt 😄
-
     </div>
-
-
 </div>
-
-
 <script>
-
-
 /* =====================================================
    WHATSAPP NUMMER
 ===================================================== */
-
 /*
- * Internationales Format
+ * Internationale Schreibweise
  *
- * Wichtig:
- * Kein +,
- * keine Leerzeichen,
- * keine Klammern
+ * OHNE:
+ * +
+ * Leerzeichen
+ * Klammern
  */
-
 const whatsappNumber =
     "491711631482";
-
-
 /* =====================================================
    ELEMENTE
 ===================================================== */
-
 const buttons =
     document.querySelectorAll(
         ".message-button"
     );
-
-
 const customMessage =
     document.getElementById(
         "customMessage"
     );
-
-
 const sendButton =
     document.getElementById(
         "sendButton"
     );
-
-
 const locationStatus =
     document.getElementById(
         "locationStatus"
     );
-
-
 const errorMessage =
     document.getElementById(
         "errorMessage"
     );
-
-
-const photo =
-    document.getElementById(
-        "photo"
-    );
-
-
-const photoPreview =
-    document.getElementById(
-        "photoPreview"
-    );
-
-
-const photoName =
-    document.getElementById(
-        "photoName"
-    );
-
-
-const removePhoto =
-    document.getElementById(
-        "removePhoto"
-    );
-
-
-let selectedMessage = "";
-
-
+/*
+ * Ausgewählte Meldung
+ */
+let selectedMessage =
+    "";
 /* =====================================================
    MELDUNGSBUTTONS
 ===================================================== */
-
 buttons.forEach(
     function(button) {
-
         button.addEventListener(
             "click",
             function() {
-
-
                 /*
-                 * Alle Buttons abwählen
+                 * Alle Buttons zurücksetzen
                  */
-
                 buttons.forEach(
                     function(item) {
-
                         item.classList.remove(
                             "selected"
                         );
-
                     }
                 );
-
-
                 /*
-                 * Aktuellen Button markieren
+                 * Diesen Button auswählen
                  */
-
                 button.classList.add(
                     "selected"
                 );
-
-
                 /*
-                 * Meldung speichern
+                 * Nachricht speichern
                  */
-
                 selectedMessage =
                     button.dataset.message;
-
-
                 /*
                  * Fehler ausblenden
                  */
-
                 errorMessage.style.display =
                     "none";
-
             }
         );
-
     }
 );
-
-
 /* =====================================================
-   FOTO AUSWÄHLEN
+   STANDORT ERMITTELN
 ===================================================== */
-
-photo.addEventListener(
-    "change",
-    function() {
-
-
-        if (
-            !photo.files ||
-            photo.files.length === 0
-        ) {
-
-            return;
-
-        }
-
-
-        const file =
-            photo.files[0];
-
-
-        /*
-         * Dateiname anzeigen
-         */
-
-        photoName.textContent =
-            "📸 Foto ausgewählt: " +
-            file.name;
-
-
-        /*
-         * Vorschau erzeugen
-         */
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(event) {
-
-                photoPreview.src =
-                    event.target.result;
-
-                photoPreview.style.display =
-                    "block";
-
-                removePhoto.style.display =
-                    "block";
-
-            };
-
-
-        reader.readAsDataURL(
-            file
-        );
-
-    }
-);
-
-
-/* =====================================================
-   FOTO ENTFERNEN
-===================================================== */
-
-removePhoto.addEventListener(
-    "click",
-    function() {
-
-
-        photo.value =
-            "";
-
-
-        photoPreview.src =
-            "";
-
-
-        photoPreview.style.display =
-            "none";
-
-
-        photoName.textContent =
-            "";
-
-
-        removePhoto.style.display =
-            "none";
-
-    }
-);
-
-
-/* =====================================================
-   STANDORT
-===================================================== */
-
 function getLocation() {
-
     return new Promise(
         function(resolve) {
-
-
             /*
-             * Geolocation vorhanden?
+             * Prüfen, ob Geolocation
+             * vorhanden ist
              */
-
             if (
                 !navigator.geolocation
             ) {
-
                 locationStatus.textContent =
                     "📍 Dieser Browser unterstützt keine Standortermittlung.";
-
                 locationStatus.className =
                     "location-status location-error";
-
                 resolve(null);
-
                 return;
-
             }
-
-
+            /*
+             * Status anzeigen
+             */
             locationStatus.textContent =
                 "📍 Standort wird ermittelt ...";
-
-
             /*
-             * Standort abfragen
+             * GPS abfragen
              */
-
             navigator.geolocation.getCurrentPosition(
-
                 function(position) {
-
-
                     const latitude =
                         position.coords.latitude;
-
-
                     const longitude =
                         position.coords.longitude;
-
-
                     const accuracy =
                         position.coords.accuracy;
-
-
                     /*
-                     * Google Maps URL
+                     * Google Maps Link
                      */
-
                     const mapsLink =
                         "https://www.google.com/maps?q=" +
                         latitude +
                         "," +
                         longitude;
-
-
                     /*
-                     * Status anzeigen
+                     * Anzeige
                      */
-
                     locationStatus.textContent =
                         "📍 Standort gefunden – Genauigkeit ca. " +
                         Math.round(
                             accuracy
                         ) +
                         " m";
-
-
                     locationStatus.className =
                         "location-status location-success";
-
-
+                    /*
+                     * Daten zurückgeben
+                     */
                     resolve({
-
                         latitude:
                             latitude,
-
                         longitude:
                             longitude,
-
                         accuracy:
                             accuracy,
-
                         mapsLink:
                             mapsLink
-
                     });
-
                 },
-
-
                 function(error) {
-
-
                     let errorText =
                         "📍 Standort konnte nicht ermittelt werden.";
-
-
                     if (
                         error.code ===
                         error.PERMISSION_DENIED
                     ) {
-
                         errorText =
                             "📍 Standortfreigabe wurde nicht erteilt.";
-
                     }
-
-
                     if (
                         error.code ===
                         error.POSITION_UNAVAILABLE
                     ) {
-
                         errorText =
                             "📍 Standort ist momentan nicht verfügbar.";
-
                     }
-
-
                     if (
                         error.code ===
                         error.TIMEOUT
                     ) {
-
                         errorText =
                             "📍 Standortermittlung hat zu lange gedauert.";
-
                     }
-
-
+                    /*
+                     * Status anzeigen
+                     */
                     locationStatus.textContent =
-                        errorText;
-
-
+                        errorText +
+                        " Die Nachricht kann trotzdem gesendet werden.";
                     locationStatus.className =
                         "location-status location-error";
-
-
                     /*
-                     * Trotzdem WhatsApp öffnen
+                     * Trotzdem fortfahren
                      */
-
                     resolve(null);
-
                 },
-
-
                 {
+                    /*
+                     * Möglichst genaue Position
+                     */
                     enableHighAccuracy:
                         true,
-
+                    /*
+                     * Maximal 10 Sekunden warten
+                     */
                     timeout:
                         10000,
-
+                    /*
+                     * Position maximal
+                     * 30 Sekunden alt
+                     */
                     maximumAge:
                         30000
-
                 }
-
             );
-
         }
     );
-
 }
-
-
 /* =====================================================
    WHATSAPP ÖFFNEN
 ===================================================== */
-
 sendButton.addEventListener(
     "click",
     async function() {
-
-
         /* ---------------------------------------------
            Nachricht prüfen
         --------------------------------------------- */
-
         let message =
             selectedMessage;
-
-
         const ownMessage =
             customMessage.value.trim();
-
-
         /*
-         * Keine Meldung?
+         * Weder Button noch Text
          */
-
         if (
             message === "" &&
             ownMessage === ""
         ) {
-
             errorMessage.textContent =
                 "Bitte wähle zuerst eine Meldung aus oder schreibe eine eigene Nachricht.";
-
             errorMessage.style.display =
                 "block";
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
             return;
-
         }
-
-
         /*
-         * Eigene Nachricht ergänzen
+         * Eigene Nachricht hinzufügen
          */
-
         if (
             ownMessage !== ""
         ) {
-
             if (
                 message !== ""
             ) {
-
                 message +=
                     "\n\n✍️ Zusatz:\n" +
                     ownMessage;
-
             } else {
-
                 message =
                     "✍️ " +
                     ownMessage;
-
             }
-
         }
-
-
         /* ---------------------------------------------
            Button deaktivieren
         --------------------------------------------- */
-
         sendButton.disabled =
             true;
-
-
         sendButton.textContent =
             "📍 Standort wird ermittelt ...";
-
-
         /* ---------------------------------------------
-           Standort
+           GPS
         --------------------------------------------- */
-
         const location =
             await getLocation();
-
-
         /* ---------------------------------------------
-           Datum / Uhrzeit
+           Datum und Uhrzeit
         --------------------------------------------- */
-
         const now =
             new Date();
-
-
         const dateTime =
             now.toLocaleString(
                 "de-DE",
                 {
                     dateStyle:
                         "full",
-
                     timeStyle:
                         "medium"
                 }
             );
-
-
         /* ---------------------------------------------
-           WhatsApp Nachricht
+           WhatsApp-Nachricht
         --------------------------------------------- */
-
         let whatsappMessage =
-
             message +
-
             "\n\n" +
-
             "🕐 Zeitpunkt:\n" +
-
             dateTime;
-
-
         /* ---------------------------------------------
-           Standort hinzufügen
+           Standort einfügen
         --------------------------------------------- */
-
         if (
             location
         ) {
-
-
             whatsappMessage +=
-
                 "\n\n" +
-
                 "📍 Standort:\n" +
-
                 location.latitude.toFixed(6) +
-
                 ", " +
-
                 location.longitude.toFixed(6) +
-
                 "\n" +
-
                 "📏 Genauigkeit: ca. " +
-
                 Math.round(
                     location.accuracy
                 ) +
-
                 " m" +
-
                 "\n\n" +
-
                 "🗺️ Google Maps:\n" +
-
                 location.mapsLink;
-
         } else {
-
-
             whatsappMessage +=
-
                 "\n\n" +
-
                 "📍 Standort:\n" +
-
                 "Nicht verfügbar.";
-
         }
-
-
         /* ---------------------------------------------
            Foto-Hinweis
         --------------------------------------------- */
-
-        if (
-            photo.files &&
-            photo.files.length > 0
-        ) {
-
-            whatsappMessage +=
-
-                "\n\n" +
-
-                "📸 Es wurde ein Foto ausgewählt." +
-
-                "\n" +
-
-                "Bitte das Foto in WhatsApp anhängen.";
-
-        }
-
-
+        whatsappMessage +=
+            "\n\n" +
+            "📷 Falls gewünscht, " +
+            "kannst du direkt in WhatsApp " +
+            "ein Foto aufnehmen.";
         /* ---------------------------------------------
            WhatsApp URL
         --------------------------------------------- */
-
         const whatsappUrl =
-
             "https://wa.me/" +
-
             whatsappNumber +
-
             "?text=" +
-
             encodeURIComponent(
                 whatsappMessage
             );
-
-
         /* ---------------------------------------------
            WhatsApp öffnen
         --------------------------------------------- */
-
         sendButton.textContent =
             "💬 WhatsApp wird geöffnet ...";
-
-
-        /*
-         * Kurze Verzögerung,
-         * damit der letzte Status sichtbar ist.
-         */
-
         setTimeout(
             function() {
-
                 window.location.href =
                     whatsappUrl;
-
             },
             300
         );
-
     }
 );
-
 </script>
-
-
 </body>
-
 </html>
