@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#7c3aed">
+
+    <title>Wolfgang-Kontakt</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5f3ff,
+                    #faf5ff
+                );
+
+            color: #1e293b;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+
+            margin: 0 auto;
+
+            padding: 15px 12px 40px;
+        }
+
+
+        .card {
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 24px 20px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, 0.10);
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 24px;
+        }
+
+
+        .emoji {
+            font-size: 65px;
+
+            margin-bottom: 5px;
+        }
+
+
+        h1 {
+            margin: 0;
+
+            font-size: 29px;
+
+            color: #111827;
+        }
+
+
+        .subtitle {
+            margin-top: 10px;
+
+            font-size: 16px;
+
+            line-height: 1.5;
+
+            color: #64748b;
+        }
+
+
+        /* =========================
+           WARNUNG
+        ========================== */
+
+        .warning {
+
+            background: #fff7ed;
+
+            border: 2px solid #fed7aa;
+
+            border-radius: 15px;
+
+            padding: 13px;
+
+            text-align: center;
+
+            margin-bottom: 23px;
+
+            font-size: 15px;
+
+            line-height: 1.4;
+
+            color: #9a3412;
+        }
+
+
+        /* =========================
+           FRAGE
+        ========================== */
+
+        .question {
+
+            font-size: 18px;
+
+            font-weight: 650;
+
+            margin: 22px 0 14px;
+        }
+
+
+        /* =========================
+           MELDUNGSBUTTONS
+        ========================== */
+
+        .message-button {
+
+            width: 100%;
+
+            border: 2px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 16px 14px;
+
+            margin-bottom: 11px;
+
+            background: #f8fafc;
+
+            color: #1e293b;
+
+            font-size: 17px;
+
+            font-weight: 550;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background .15s,
+                border-color .15s,
+                transform .1s;
+        }
+
+
+        .message-button:hover {
+
+            background: #f1f5f9;
+        }
+
+
+        .message-button:active {
+
+            transform: scale(.98);
+        }
+
+
+        .message-button.selected {
+
+            background: #f3e8ff;
+
+            border-color: #9333ea;
+
+            color: #7e22ce;
+        }
+
+
+        /* =========================
+           TEXTFELD
+        ========================== */
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 120px;
+
+            padding: 14px;
+
+            border: 2px solid #e5e7eb;
+
+            border-radius: 15px;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            line-height: 1.45;
+
+            resize: vertical;
+
+            outline: none;
+        }
+
+
+        textarea:focus {
+
+            border-color: #9333ea;
+        }
+
+
+        /* =========================
+           E-MAIL
+        ========================== */
+
+        input[type="email"] {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: 2px solid #e5e7eb;
+
+            border-radius: 15px;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+
+        input[type="email"]:focus {
+
+            border-color: #9333ea;
+        }
+
+
+        /* =========================
+           STANDORT
+        ========================== */
+
+        .location-box {
+
+            background: #f8fafc;
+
+            border-radius: 16px;
+
+            padding: 15px;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .location-title {
+
+            font-size: 17px;
+
+            font-weight: 650;
+
+            margin-bottom: 6px;
+        }
+
+
+        .location-text {
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            color: #64748b;
+        }
+
+
+        .location-status {
+
+            margin-top: 9px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .location-success {
+
+            color: #15803d;
+        }
+
+
+        .location-error {
+
+            color: #b91c1c;
+        }
+
+
+        /* =========================
+           SENDEN
+        ========================== */
+
+        .send-button {
+
+            width: 100%;
+
+            margin-top: 22px;
+
+            padding: 18px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background: #7c3aed;
+
+            color: white;
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+
+        .send-button:hover {
+
+            background: #6d28d9;
+        }
+
+
+        .send-button:active {
+
+            transform: scale(.98);
+        }
+
+
+        .send-button:disabled {
+
+            background: #a78bfa;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           FEHLER
+        ========================== */
+
+        .error {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 13px;
+
+            border-radius: 13px;
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           ERFOLG
+        ========================== */
+
+        .success {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 25px 5px;
+        }
+
+
+        .success-icon {
+
+            font-size: 70px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .success h2 {
+
+            margin: 0 0 12px;
+
+            font-size: 27px;
+        }
+
+
+        .success p {
+
+            color: #64748b;
+
+            line-height: 1.6;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           HINWEIS
+        ========================== */
+
+        .privacy {
+
+            margin-top: 18px;
+
+            font-size: 12px;
+
+            color: #94a3b8;
+
+            text-align: center;
+
+            line-height: 1.5;
+        }
+
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 16px;
+
+            font-size: 12px;
+
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           KLEINE HANDYS
+        ========================== */
+
+        @media (max-width: 380px) {
+
+            .container {
+                padding: 10px 8px 30px;
+            }
+
+            .card {
+                padding: 20px 16px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .message-button {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="card">
+
+
+        <!-- =========================================
+             KONTAKTBEREICH
+        ========================================== -->
+
+        <div id="contactArea">
+
+
+            <div class="header">
+
+                <div class="emoji">
+                    📱🍺
+                </div>
+
+
+                <h1>
+                    Wolfgang-Kontakt
+                </h1>
+
+
+                <div class="subtitle">
+
+                    Du hast Wolfgang entdeckt?
+
+                    <br>
+
+                    Dann kannst du seiner Frau
+                    eine Nachricht schicken. 😄
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 WARNUNG
+            ====================================== -->
+
+            <div class="warning">
+
+                ⚠️ <strong>Wichtige Information</strong><br>
+
+                Falls Wolfgang gerade etwas
+                merkwürdig wirkt – bitte melden! 😂
+
+            </div>
+
+
+            <!-- =====================================
+                 FORMSPREE FORMULAR
+            ====================================== -->
+
+            <form
+                id="contactForm"
+
+                action="https://formspree.io/f/mwlpavol"
+
+                method="POST"
+            >
+
+
+                <!-- =================================
+                     AUTOMATISCHER BETREFF
+                ================================== -->
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    id="subjectField"
+                >
+
+
+                <!-- =================================
+                     ZEITPUNKT
+                ================================== -->
+
+                <input
+                    type="hidden"
+                    name="Zeitpunkt"
+                    id="timeField"
+                >
+
+
+                <!-- =================================
+                     MELDUNG
+                ================================== -->
+
+                <input
+                    type="hidden"
+                    name="Meldung"
+                    id="messageField"
+                >
+
+
+                <!-- =================================
+                     STANDORT
+                ================================== -->
+
+                <input
+                    type="hidden"
+                    name="Standort"
+                    id="locationField"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="Breitengrad"
+                    id="latitudeField"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="Laengengrad"
+                    id="longitudeField"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="Genauigkeit"
+                    id="accuracyField"
+                >
+
+
+                <input
+                    type="hidden"
+                    name="Google Maps"
+                    id="mapsField"
+                >
+
+
+                <!-- =================================
+                     MELDUNG
+                ================================== -->
+
+                <div class="question">
+
+                    Was ist los? 😄
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="message-button"
+                    data-message="🍺 Ich glaube, Wolfgang ist betrunken."
+                >
+
+                    🍺 &nbsp; Wolfgang ist betrunken
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-button"
+                    data-message="😴 Wolfgang ist eingeschlafen."
+                >
+
+                    😴 &nbsp; Wolfgang ist eingeschlafen
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-button"
+                    data-message="🕺 Wolfgang tanzt gerade."
+                >
+
+                    🕺 &nbsp; Wolfgang tanzt
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-button"
+                    data-message="😂 Wolfgang macht gerade Unsinn."
+                >
+
+                    😂 &nbsp; Wolfgang macht Unsinn
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-button"
+                    data-message="🚨 Wolfgang braucht vermutlich eine Abholung."
+                >
+
+                    🚨 &nbsp; Wolfgang braucht Abholung
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-button"
+                    data-message="👍 Wolfgang ist wohlauf."
+                >
+
+                    👍 &nbsp; Wolfgang ist wohlauf
+
+                </button>
+
+
+                <!-- =================================
+                     EIGENE NACHRICHT
+                ================================== -->
+
+                <div class="question">
+
+                    Noch etwas dazu?
+
+                </div>
+
+
+                <textarea
+                    id="customMessage"
+                    name="Nachricht"
+                    placeholder="Hier kannst du noch etwas schreiben ..."
+                ></textarea>
+
+
+                <!-- =================================
+                     E-MAIL OPTIONAL
+                ================================== -->
+
+                <div class="question">
+
+                    Deine E-Mail-Adresse
+
+                    <span
+                        style="
+                            font-weight:400;
+                            color:#94a3b8;
+                            font-size:14px;
+                        "
+                    >
+                        (optional)
+                    </span>
+
+                </div>
+
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="name@beispiel.de"
+                >
+
+
+                <!-- =================================
+                     STANDORT
+                ================================== -->
+
+                <div class="question">
+
+                    📍 Standort
+
+                </div>
+
+
+                <div class="location-box">
+
+
+                    <div class="location-title">
+
+                        Standort mitsenden
+
+                    </div>
+
+
+                    <div class="location-text">
+
+                        Wenn du deinen Standort freigibst,
+                        kann die Empfängerin sehen,
+                        wo Wolfgang gerade ist.
+
+                        <br><br>
+
+                        Die Standortfreigabe ist freiwillig.
+
+                    </div>
+
+
+                    <div
+                        id="locationStatus"
+                        class="location-status"
+                    >
+
+                        Standort wird beim Absenden
+                        abgefragt.
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     SENDEN
+                ================================== -->
+
+                <button
+                    type="submit"
+                    class="send-button"
+                    id="sendButton"
+                >
+
+                    🚨 Nachricht an seine Frau senden
+
+                </button>
+
+
+                <div
+                    id="errorMessage"
+                    class="error"
+                >
+
+                    Die Nachricht konnte leider
+                    nicht gesendet werden.
+
+                </div>
+
+
+            </form>
+
+
+            <!-- =====================================
+                 HINWEIS
+            ====================================== -->
+
+            <div class="privacy">
+
+                Die Nachricht wird über Formspree
+                an den hinterlegten Empfänger gesendet.
+
+                <br>
+
+                Die Standortfreigabe ist freiwillig.
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             ERFOLG
+        ========================================== -->
+
+        <div
+            id="successArea"
+            class="success"
+        >
+
+            <div class="success-icon">
+                🎉
+            </div>
+
+
+            <h2>
+                Nachricht ist unterwegs!
+            </h2>
+
+
+            <p>
+
+                Danke für die Meldung! 😄
+
+                <br><br>
+
+                Wolfgangs Frau wurde informiert.
+
+                <br><br>
+
+                Jetzt kannst du weiterfeiern. 🍻
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer">
+
+        Wolfgang-Kontakt 😄
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   ELEMENTE
+===================================================== */
+
+const form =
+    document.getElementById(
+        "contactForm"
+    );
+
+
+const buttons =
+    document.querySelectorAll(
+        ".message-button"
+    );
+
+
+const messageField =
+    document.getElementById(
+        "messageField"
+    );
+
+
+const sendButton =
+    document.getElementById(
+        "sendButton"
+    );
+
+
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+
+const locationStatus =
+    document.getElementById(
+        "locationStatus"
+    );
+
+
+/* =====================================================
+   MELDUNGSBUTTONS
+===================================================== */
+
+buttons.forEach(
+    function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+
+                /* Alle Buttons zurücksetzen */
+
+                buttons.forEach(
+                    function(item) {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                /* Gewählten Button markieren */
+
+                button.classList.add(
+                    "selected"
+                );
+
+
+                /* Meldung speichern */
+
+                messageField.value =
+                    button.dataset.message;
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   STANDORT ERMITTELN
+===================================================== */
+
+function getLocation() {
+
+    return new Promise(
+        function(resolve) {
+
+
+            /*
+             * Prüfen, ob Geolocation
+             * verfügbar ist
+             */
+
+            if (
+                !navigator.geolocation
+            ) {
+
+                locationStatus.textContent =
+                    "Dieser Browser unterstützt keine Standortermittlung.";
+
+                locationStatus.className =
+                    "location-status location-error";
+
+                resolve(null);
+
+                return;
+
+            }
+
+
+            locationStatus.textContent =
+                "📍 Standort wird ermittelt ...";
+
+
+            /*
+             * Standort abfragen
+             */
+
+            navigator.geolocation.getCurrentPosition(
+
+                function(position) {
+
+
+                    const latitude =
+                        position.coords.latitude;
+
+
+                    const longitude =
+                        position.coords.longitude;
+
+
+                    const accuracy =
+                        position.coords.accuracy;
+
+
+                    /*
+                     * Google-Maps-Link
+                     */
+
+                    const mapsLink =
+                        "https://www.google.com/maps?q=" +
+                        latitude +
+                        "," +
+                        longitude;
+
+
+                    /*
+                     * Daten ins Formular schreiben
+                     */
+
+                    document.getElementById(
+                        "latitudeField"
+                    ).value =
+                        latitude;
+
+
+                    document.getElementById(
+                        "longitudeField"
+                    ).value =
+                        longitude;
+
+
+                    document.getElementById(
+                        "accuracyField"
+                    ).value =
+                        Math.round(
+                            accuracy
+                        ) +
+                        " Meter";
+
+
+                    document.getElementById(
+                        "locationField"
+                    ).value =
+                        latitude +
+                        ", " +
+                        longitude;
+
+
+                    document.getElementById(
+                        "mapsField"
+                    ).value =
+                        mapsLink;
+
+
+                    /*
+                     * Status anzeigen
+                     */
+
+                    locationStatus.textContent =
+                        "📍 Standort gefunden – Genauigkeit ca. " +
+                        Math.round(
+                            accuracy
+                        ) +
+                        " m";
+
+
+                    locationStatus.className =
+                        "location-status location-success";
+
+
+                    resolve(position);
+
+                },
+
+
+                function(error) {
+
+
+                    let message =
+                        "Standort konnte nicht ermittelt werden.";
+
+
+                    if (
+                        error.code ===
+                        error.PERMISSION_DENIED
+                    ) {
+
+                        message =
+                            "Standortfreigabe wurde nicht erteilt.";
+
+                    }
+
+
+                    if (
+                        error.code ===
+                        error.POSITION_UNAVAILABLE
+                    ) {
+
+                        message =
+                            "Standort ist momentan nicht verfügbar.";
+
+                    }
+
+
+                    if (
+                        error.code ===
+                        error.TIMEOUT
+                    ) {
+
+                        message =
+                            "Standortermittlung hat zu lange gedauert.";
+
+                    }
+
+
+                    /*
+                     * Hinweis anzeigen
+                     */
+
+                    locationStatus.textContent =
+                        message +
+                        " Die Nachricht wird trotzdem gesendet.";
+
+
+                    locationStatus.className =
+                        "location-status location-error";
+
+
+                    /*
+                     * Wichtig:
+                     * Auch ohne Standort
+                     * wird die Nachricht gesendet.
+                     */
+
+                    resolve(null);
+
+                },
+
+
+                {
+                    enableHighAccuracy: true,
+
+                    timeout: 10000,
+
+                    maximumAge: 60000
+                }
+
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FORMULAR ABSENDEN
+===================================================== */
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+
+        /*
+         * Normales Absenden verhindern
+         */
+
+        event.preventDefault();
+
+
+        /* ---------------------------------------------
+           Nachricht prüfen
+        --------------------------------------------- */
+
+        let message =
+            messageField.value.trim();
+
+
+        const customMessage =
+            document.getElementById(
+                "customMessage"
+            ).value.trim();
+
+
+        /*
+         * Entweder Button oder eigene Nachricht
+         */
+
+        if (
+            message === "" &&
+            customMessage === ""
+        ) {
+
+            errorMessage.textContent =
+                "Bitte wähle zuerst eine Meldung aus oder schreibe etwas dazu.";
+
+            errorMessage.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        /*
+         * Falls nur eigene Nachricht
+         */
+
+        if (
+            message === "" &&
+            customMessage !== ""
+        ) {
+
+            message =
+                "✉️ Eigene Nachricht";
+
+
+            messageField.value =
+                message;
+
+        }
+
+
+        /* ---------------------------------------------
+           Datum und Uhrzeit
+        --------------------------------------------- */
+
+        const now =
+            new Date();
+
+
+        const timeString =
+            now.toLocaleString(
+                "de-DE",
+                {
+                    dateStyle:
+                        "full",
+
+                    timeStyle:
+                        "medium"
+                }
+            );
+
+
+        document.getElementById(
+            "timeField"
+        ).value =
+            timeString;
+
+
+        /* ---------------------------------------------
+           Automatischer Betreff
+        --------------------------------------------- */
+
+        document.getElementById(
+            "subjectField"
+        ).value =
+            "🍺 Wolfgang-Kontakt – " +
+            message;
+
+
+        /* ---------------------------------------------
+           Fehler ausblenden
+        --------------------------------------------- */
+
+        errorMessage.style.display =
+            "none";
+
+
+        /* ---------------------------------------------
+           Senden deaktivieren
+        --------------------------------------------- */
+
+        sendButton.disabled =
+            true;
+
+
+        sendButton.textContent =
+            "📍 Standort wird ermittelt ...";
+
+
+        /* ---------------------------------------------
+           Standort abfragen
+        --------------------------------------------- */
+
+        await getLocation();
+
+
+        /* ---------------------------------------------
+           Nachricht senden
+        --------------------------------------------- */
+
+        sendButton.textContent =
+            "📨 Nachricht wird gesendet ...";
+
+
+        try {
+
+
+            /*
+             * Formulardaten erstellen
+             */
+
+            const formData =
+                new FormData(form);
+
+
+            /*
+             * An Formspree senden
+             */
+
+            const response =
+                await fetch(
+                    form.action,
+                    {
+                        method:
+                            "POST",
+
+                        body:
+                            formData,
+
+                        headers: {
+                            "Accept":
+                                "application/json"
+                        }
+                    }
+                );
+
+
+            /* -----------------------------------------
+               Erfolgreich
+            ----------------------------------------- */
+
+            if (
+                response.ok
+            ) {
+
+
+                /*
+                 * Formular ausblenden
+                 */
+
+                document.getElementById(
+                    "contactArea"
+                ).style.display =
+                    "none";
+
+
+                /*
+                 * Erfolg anzeigen
+                 */
+
+                document.getElementById(
+                    "successArea"
+                ).style.display =
+                    "block";
+
+
+            } else {
+
+                throw new Error(
+                    "Formspree error"
+                );
+
+            }
+
+
+        } catch (error) {
+
+
+            /*
+             * Fehler anzeigen
+             */
+
+            errorMessage.textContent =
+                "Die Nachricht konnte leider nicht gesendet werden. Bitte versuche es noch einmal.";
+
+
+            errorMessage.style.display =
+                "block";
+
+
+            /*
+             * Button wieder aktivieren
+             */
+
+            sendButton.disabled =
+                false;
+
+
+            sendButton.textContent =
+                "🚨 Nachricht an seine Frau senden";
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
